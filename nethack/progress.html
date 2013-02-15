@@ -1,0 +1,137 @@
+<html>
+<head><title>Nethack - Progress Tracker</title><link type="text/css" rel="stylesheet" href="/static/main.css" /></head>
+<body>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+	<script src="/static/progress.js"></script>
+	<div class='topMenuContainer'>
+		<ul class='topMenu topMenuLeft'>
+            <li id="imageNode"><a href='/nethack/progress'><img src='/static/logo.jpg'></a><span class='lineSeparator'></span></li>
+            {% if not characterSelected %}
+            <li class="createButton" id="createButton" onclick='showCreateCharacterFields();'><a>Create character</a></li>
+            {% endif %}
+            {% if characterSelected %}
+            <li class='editButton' id='editButton' onclick='showEditFields();'><a>Edit character</a></li>
+			<li class='saveButton' id='saveButton' onclick='saveCharacter();'><a>Save character</a></li>
+			<li class='deleteButton' id='deleteButton' onclick='deleteCharacter()'><a>Delete character</a></li>
+            {% endif %}
+		</ul>
+        <ul class="topMenu topMenuRight">
+            <li class='userAccountButton'>{{ user.email() }}</li>
+        </ul>
+        <span class="clear"></span>
+	</div>
+
+
+
+    <br/>
+
+    {% if not characterSelected %}
+    <div id="characterListDisplay" class="characterListDisplay">
+		<h3>Characters</h3>
+        <ul id='characterList'>
+            <li id="newCharacterItem" class="characterListItem newCharacterFields">
+                <label for="newCharInput">Character Name: </label><input type="text" id="newCharInput" class="charNameField" />
+                <button id='newCharSaveButton' onclick="createCharacter()">Save</button><button onclick="removeCreateCharacterFields();">Cancel</button>
+            </li>
+        {% for character in characters %}
+			<li onclick='showCharacter("{{ character.key() }}");' class='characterListItem'>{{ character.character_name }} ({{ character.created_date }})</li>
+		{% endfor %}
+        </ul>
+        {% if characters|length <= 0 %}
+            <span class="noCharacterMessage">No characters have been created.</span>
+        {% endif %}
+	</div>
+    {% endif %}
+
+    {% if characterSelected %}
+	{% for character in characters %}
+	<div class='characterContainer' id='sheet_{{character.key()}}' key='{{character.key()}}'>
+        <ul>
+            <li>Character: <span id='charName' class='editableItem'>{{ character.character_name }}</span><input name='edit_charName' type='text' class='editField' value='{{ character.character_name }}' /></li>
+            <li>Created: <span id='createdDate'>{{ character.created_date }}</span></li>
+        </ul>
+
+        <table class="charDetailsOuterTable">
+            <tr>
+                <td class="charDetailsLeftColumn">
+                    <div>
+                        <h3>General</h3>
+                        <table>
+                            <tr><td class="characterListFirstColumn">Protection</td><td><span id='donations' class='editableItem'>{{ character.donations }}</span><input name='edit_donations' type='text' class='editField' value='{{ character.donations }}' /></td></tr>
+                            <tr><td class="characterListFirstColumn">Magic Resistance</td><td><span id='magicResistance' class='editableItem'>{{ character.magic_resistance }}</span><input name='edit_magicResistance' type='checkbox' class='editField' {% if character.magic_resistance == "true" %} checked='true' {% endif %}  /></td></tr>
+                            <tr><td class="characterListFirstColumn">Magic Cancellation</td><td><span id='magicCancellation' class='editableItem'>{{ character.magic_cancellation }}</span><input name='edit_magicCancellation' type='checkbox' class='editField'  {% if character.magic_cancellation == "true"  %} checked='true' {% endif %}/></td></tr>
+                            <tr><td class="characterListFirstColumn">Reflection</td><td><span id='reflection' class='editableItem'>{{ character.reflection }}</span><input name='edit_reflection' type='checkbox' class='editField'  {% if character.reflection == "true" %} checked='true' {% endif %}/></td></tr>
+                            <tr><td class="characterListFirstColumn">Bag of Holding</td><td><span id='boh' class='editableItem'>{{ character.boh }}</span><input name='edit_boh' type='checkbox' class='editField'  {% if character.boh == "true" %} checked='true' {% endif %}/></td></tr>
+                            <tr><td class="characterListFirstColumn">Luckstone</td><td><span id='luckstone' class='editableItem'>{{ character.luckstone }}</span><input name='edit_luckstone' type='checkbox' class='editField'  {% if character.luckstone == "true" %} checked='true' {% endif %}/></td></tr>
+                        </table>
+                    </div>
+                    <div>
+                        <h3>Locations</h3>
+                        <table>
+                            <tr><td class="characterListFirstColumn">Stash location(s)</td><td><span id='stashLocations' class='editableItem'>{{ character.stash_location }}</span><input name='edit_stashLocations' type='text' class='editField' value='{{ character.stash_location }}' /></td></tr>
+                            <tr><td class="characterListFirstColumn">Store location(s)</td><td><span id='storeLocations' class='editableItem'>{{ character.store_location }}</span><input name='edit_storeLocations' type='text' class='editField' value='{{ character.store_location }}' /></td></tr>
+                            <tr><td class="characterListFirstColumn">Vault location(s)</td><td><span id='vaultLocations' class='editableItem'>{{ character.vault_location }}</span><input name='edit_vaultLocations' type='text' class='editField' value='{{ character.vault_location }}' /></td></tr>
+                            <tr><td colspan="2"><hr /></td></tr>
+                            <tr><td class="characterListFirstColumn">Mine location</td><td><span id='mineLocation' class='editableItem'>{{ character.mine_location }}</span><input name='edit_mineLocation' type='text' class='editField' value='{{ character.mine_location }}' /></td></tr>
+                            <tr><td class="characterListFirstColumn">Sokoban location</td><td><span id='sokobanLocation' class='editableItem'>{{ character.sokoban_location }}</span><input name='edit_sokobanLocation' type='text' class='editField' value='{{ character.sokoban_location }}' /></td></tr>
+                            <tr><td class="characterListFirstColumn">Fort Ludios location</td><td><span id='fortLudiosLocation' class='editableItem'>{{ character.ludios_location }}</span><input name='edit_fortLudiosLocation' type='text' class='editField' value='{{ character.ludios_location }}' /></td></tr>
+                            <tr><td class="characterListFirstColumn">Quest location</td><td><span id='questLocation' class='editableItem'>{{ character.quest_location }}</span><input name='edit_questLocation' type='text' class='editField' value='{{ character.quest_location }}' /></td></tr>
+                            <tr><td class="characterListFirstColumn">Medusa location</td><td><span id='medusaLocation' class='editableItem'>{{ character.medusa_location }}</span><input name='edit_medusaLocation' type='text' class='editField' value='{{ character.medusa_location }}' /></td></tr>
+                            <tr><td class="characterListFirstColumn">Castle location</td><td><span id='castleLocation' class='editableItem'>{{ character.castle_location }}</span><input name='edit_castleLocation' type='text' class='editField' value='{{ character.castle_location }}' /></td></tr>
+                        </table>
+                    </div>
+                </td>
+                <td class="charDetailsRightColumn">
+                    <h3>Resistance/Intrinsic</h3>
+                    <table>
+                        <tr><td class="characterListFirstColumn">Poison Resistance</td><td><span id='poisonResistance' class='editableItem'>{{ character.poison_resistance }}</span><input name='edit_poisonResistance' type='checkbox' class='editField'  {% if character.poison_resistance == "yes" %} checked='true' {% endif %}/></td></tr>
+                        <tr><td class="characterListFirstColumn">Sleep Resistance</td><td><span id='sleepResistance' class='editableItem'>{{ character.sleep_resistance }}</span><input name='edit_sleepResistance' type='checkbox' class='editField'  {% if character.sleep_resistance == "yes" %} checked='true' {% endif %}/></td></tr>
+                        <tr><td class="characterListFirstColumn">Cold Resistance</td><td><span id='coldResistance' class='editableItem'>{{ character.cold_resistance }}</span><input name='edit_coldResistance' type='checkbox' class='editField'  {% if character.cold_resistance == "yes" %} checked='true' {% endif %}/></td></tr>
+                        <tr><td class="characterListFirstColumn">Fire Resistance</td><td><span id='fireResistance' class='editableItem'>{{ character.fire_resistance }}</span><input name='edit_fireResistance' type='checkbox' class='editField'  {% if character.fire_resistance == "yes" %} checked='true' {% endif %}/></td></tr>
+                        <tr><td class="characterListFirstColumn">Shock Resistance</td><td><span id='shockResistance' class='editableItem'>{{ character.shock_resistance }}</span><input name='edit_shockResistance' type='checkbox' class='editField'  {% if character.shock_resistance == "yes" %} checked='true' {% endif %}/></td></tr>
+                        <tr><td class="characterListFirstColumn">Disintegration Resistance</td><td><span id='disintegrationResistance' class='editableItem'>{{ character.disintegration_resistance }}</span><input name='edit_disintegrationResistance' type='checkbox' class='editField'  {% if character.disintegration_resistance == "yes" %} checked='true' {% endif %}/></td></tr>
+                        <tr><td colspan='2'><hr /></td></tr>
+                        <tr><td class="characterListFirstColumn">Telepathy</td><td><span class="editableItem" id='telepathy'>{{ character.telepathy }}</span><input name='edit_telepathy' type='checkbox' class='editField' {% if character.telepathy == "yes" %} checked='true' {% endif %}/></td></tr>
+                        <tr><td class="characterListFirstColumn">Speed</td><td><span class="editableItem" id='speed'>{{ character.speed }}</span><input name='edit_speed' type='checkbox' class='editField' {% if character.speed == "yes" %} checked='true' {% endif %}/></td></tr>
+                        <tr><td class="characterListFirstColumn">Invisible</td><td><span class="editableItem" id='invisibility'>{{ character.invisible }}</span><input name='edit_invisible' type='checkbox' class='editField' {% if character.invisible == "yes" %} checked='true' {% endif %}/></td></tr>
+                        <tr><td class="characterListFirstColumn">See Invisible</td><td><span class="editableItem" id='seeInvisibility'>{{ character.seeInvisible }}</span><input name='edit_seeInvisible' type='checkbox' class='editField' {% if character.seeInvisible == "yes" %} checked='true' {% endif %}/></td></tr>
+                        <tr><td class="characterListFirstColumn">Stealth</td><td><span class="editableItem" id='stealth'>{{ character.stealth }}</span><input name='edit_stealth' type='checkbox' class='editField' {% if character.stealth == "yes" %} checked='true' {% endif %}/></td></tr>
+                        <tr><td class="characterListFirstColumn">Free Action</td><td><span class="editableItem" id='freeAction'>{{ character.freeAction }}</span><input name='edit_freeAction' type='checkbox' class='editField' {% if character.freeAction == "yes" %} checked='true' {% endif %}/></td></tr>
+                        <tr><td class="characterListFirstColumn">Levitation</td><td><span class="editableItem" id='levitation'>{{ character.levitation }}</span><input name='edit_levitation' type='checkbox' class='editField' {% if character.levitation == "yes" %} checked='true' {% endif %}/></td></tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td>
+
+                </td>
+                <td></td>
+            </tr>
+        </table>
+
+
+	</div>
+    <div id='linkList'>
+        <h3>Links</h3>
+        <ul>
+            <li><a href='http://www.nethackwiki.com/'>NetHack Wiki</a><br/><span>http://www.nethackwiki.com/</span></li>
+            <li><a href='http://www.chiark.greenend.org.uk/~damerell/games/nhid.html'>Object Identifier Table</a><br/><span>http://www.chiark.greenend.org.uk/~damerell/games/nhid.html</span></li>
+            <li><a href='http://www.steelypips.org/nethack/343/index.html'>Items</a><br/><span>http://www.steelypips.org/nethack/343/index.html</span></li>
+            <li><a href='http://webchat.freenode.net/'>IRC</a><br/><span>http://webchat.freenode.net/</span></li>
+            <li><a href='http://lparchive.org/Nethack-%28by-Lobster-Maneuver%29/'>Tutorial</a><br/><span>http://lparchive.org/Nethack-%28by-Lobster-Maneuver%29/</span></li>
+            <!--
+            <li>NetHack Wiki: <a href='http://www.nethackwiki.com/'>http://www.nethackwiki.com/</a></li>
+            <li>Object Identifier Table: <a href='http://www.chiark.greenend.org.uk/~damerell/games/nhid.html '>http://www.chiark.green...</a></li>
+            <li>Items: <a href='http://www.steelypips.org/nethack/343/index.html '>http://www.steelypips.org/nethack/343/inde...</a></li>
+            <li>IRC: <a href='http://webchat.freenode.net/'>http://webchat.freenode.net/</a></li>
+            <li>Tutorial: <a href='http://lparchive.org/Nethack-%28by-Lobster-Maneuver%29/'>http://lparchive.org/Nethack-%28by-Lobster-Ma...</a></li>
+            -->
+        </ul>
+    </div>
+	{% endfor %}
+    {% endif %}
+
+    <br />
+    <br />
+</body>
+</html>

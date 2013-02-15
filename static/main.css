@@ -1,0 +1,151 @@
+body{
+	font-family: "Segoe UI","Segoe UI Web Regular","Segoe UI Symbol","Helvetica Neue","BBAlpha Sans","S60 Sans",Arial,"sans-serif";
+	background-color: #F0F0F0;
+	color: #444;
+    margin: 0px;
+    padding: 0px;
+}
+
+ul{
+	list-style: none;
+	padding: 0;
+	margin: 0;
+    line-height: 142%
+}
+
+.topMenuContainer{
+    width: 100%;
+    overflow: visible;
+    background-color: #0072C6;
+}
+
+/* top menu */
+.topMenu{
+    color: white;
+    width: 100%;
+}
+
+.topMenu li{
+    list-style-type: none;
+    padding-right: 10px;
+    padding-left: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    height: 44px;
+    line-height: 44px;
+    overflow: hidden;
+}
+
+.topMenuLeft li{
+    float: left;
+}
+
+.topMenuRight li{
+    float: right;
+}
+
+.topMenu li:hover{
+    background-color: #245c9c;
+}
+
+#imageNode:hover{
+    background-color: #0072C6;
+}
+
+.lineSeparator{
+    border-left: 1px;
+    border-left-color: #F0F0F0;
+    border-left-style: solid;
+    position: relative;
+    top: -15px;
+    font-size: 18px;
+    margin-left: 10px;
+}
+/* end top menu */
+
+/* character list */
+.characterContainer, .characterListDisplay{
+    margin-left: 30px;
+}
+
+.noCharacterMessage{
+    font-style: italic;
+}
+
+.characterListFirstColumn{
+    width: 250px;
+}
+
+li.characterListItem{
+    padding-bottom: 10px;
+	overflow: hidden;
+	cursor: pointer;	
+}
+
+li.characterListItem:hover{
+	background: #E3E3E3;
+}
+
+.editField, .saveButton, .newCharacterFields{
+	display: none;
+}
+/* end character list */
+
+/* character details */
+.charDetailsOuterTable{
+    margin-top: 30px;
+}
+
+.charDetailsLeftColumn{
+    padding-right: 75px;
+    vertical-align: top;
+}
+
+.charDetailsRightColumn{
+    vertical-align: top;
+}
+
+.charDetailsNoValue{
+    font-weight: bold;
+    color: red;
+}
+
+.charDetailsYesValue{
+    font-weight: bold;
+    color: limegreen;
+}
+/* end character details */
+
+/* link area */
+#linkList{
+    float: right;
+    border-left: 1px solid #444;
+    padding-left: 20px;
+    padding-right: 20px;
+    height: 100%;
+}
+
+#linkList li{
+    padding-bottom: 10px;
+}
+
+#linkList span{
+    font-size: 12px;
+}
+
+#linkList a:visited, a:link, a:active{
+    color: #0068cf;
+}
+
+.characterContainer{
+    float: left;
+}
+
+.clear {
+    clear: both;
+    display: block;
+    overflow: hidden;
+    visibility: hidden;
+    width: 0;
+    height: 0;
+}

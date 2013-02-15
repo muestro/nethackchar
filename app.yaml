@@ -1,0 +1,24 @@
+application: nethackchar
+version: 1
+runtime: python27
+api_version: 1
+threadsafe: no
+libraries:
+- name: jinja2
+  version: latest
+
+handlers:
+- url: /
+  script: nethack.main.app
+
+- url: /static
+  static_dir: static
+  
+- url: /nethack.*
+  script: nethack.main.app
+  
+- url: /.*
+  script: not_found.app
+  
+
+  
