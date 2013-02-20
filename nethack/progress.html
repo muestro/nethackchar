@@ -78,6 +78,9 @@
                             <tr><td class="characterListFirstColumn">Quest location</td><td><span id='questLocation' class='editableItem'>{{ character.quest_location }}</span><input name='edit_questLocation' type='text' class='editField' value='{{ character.quest_location }}' /></td></tr>
                             <tr><td class="characterListFirstColumn">Medusa location</td><td><span id='medusaLocation' class='editableItem'>{{ character.medusa_location }}</span><input name='edit_medusaLocation' type='text' class='editField' value='{{ character.medusa_location }}' /></td></tr>
                             <tr><td class="characterListFirstColumn">Castle location</td><td><span id='castleLocation' class='editableItem'>{{ character.castle_location }}</span><input name='edit_castleLocation' type='text' class='editField' value='{{ character.castle_location }}' /></td></tr>
+                            <tr><td colspan="2"><hr /></td></tr>
+                            <tr><td class="characterListFirstColumn">Vlad's Tower location</td><td><span id='vladTowerLocation' class='editableItem'>{{ character.vladTower_location }}</span><input name='edit_vladTowerLocation' type='text' class='editField' value='{{ character.vladTower_location }}' /></td></tr>
+                            <tr><td class="characterListFirstColumn">Fake Tower location</td><td><span id='fakeTowerLocation' class='editableItem'>{{ character.fakeTower_location }}</span><input name='edit_fakeTowerLocation' type='text' class='editField' value='{{ character.fakeTower_location }}' /></td></tr>
                         </table>
                     </div>
                 </td>
@@ -96,8 +99,11 @@
                         <tr><td class="characterListFirstColumn">Invisible</td><td><span class="editableItem" id='invisibility'>{{ character.invisible }}</span><input name='edit_invisible' type='checkbox' class='editField' {% if character.invisible == "yes" %} checked='true' {% endif %}/></td></tr>
                         <tr><td class="characterListFirstColumn">See Invisible</td><td><span class="editableItem" id='seeInvisibility'>{{ character.seeInvisible }}</span><input name='edit_seeInvisible' type='checkbox' class='editField' {% if character.seeInvisible == "yes" %} checked='true' {% endif %}/></td></tr>
                         <tr><td class="characterListFirstColumn">Stealth</td><td><span class="editableItem" id='stealth'>{{ character.stealth }}</span><input name='edit_stealth' type='checkbox' class='editField' {% if character.stealth == "yes" %} checked='true' {% endif %}/></td></tr>
+                        <tr><td colspan="2"><hr /></td></tr>
                         <tr><td class="characterListFirstColumn">Free Action</td><td><span class="editableItem" id='freeAction'>{{ character.freeAction }}</span><input name='edit_freeAction' type='checkbox' class='editField' {% if character.freeAction == "yes" %} checked='true' {% endif %}/></td></tr>
                         <tr><td class="characterListFirstColumn">Levitation</td><td><span class="editableItem" id='levitation'>{{ character.levitation }}</span><input name='edit_levitation' type='checkbox' class='editField' {% if character.levitation == "yes" %} checked='true' {% endif %}/></td></tr>
+                        <tr><td class="characterListFirstColumn">Conflict</td><td><span class="editableItem" id='conflict'>{{ character.conflict }}</span><input name='edit_conflict' type='checkbox' class='editField' {% if character.conflict == "yes" %} checked='true' {% endif %}/></td></tr>
+                        <tr><td class="characterListFirstColumn">Slow Digestion</td><td><span class="editableItem" id='slowDigestion'>{{ character.slowDigestion }}</span><input name='edit_slowDigestion' type='checkbox' class='editField' {% if character.slowDigestion == "yes" %} checked='true' {% endif %}/></td></tr>
                     </table>
                 </td>
             </tr>

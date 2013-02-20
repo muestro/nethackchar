@@ -24,8 +24,11 @@ class Character(db.Model):
     invisible = db.StringProperty()
     seeInvisible = db.StringProperty()
     stealth = db.StringProperty()
+
     freeAction = db.StringProperty()
     levitation = db.StringProperty()
+    conflict = db.StringProperty()
+    slowDigestion = db.StringProperty()
 
     # location(s)
     stash_location = db.StringProperty()
@@ -37,6 +40,9 @@ class Character(db.Model):
     castle_location = db.StringProperty()
     quest_location = db.StringProperty()
     medusa_location = db.StringProperty()
+
+    vladTower_location = db.StringProperty()
+    fakeTower_location = db.StringProperty()
 
     # general
     donations = db.StringProperty()
@@ -51,7 +57,9 @@ def create_or_update_character(user, key, character_name, donations='0', magic_r
                                magic_cancellation='no', reflection='no', boh='no', luckstone='no',
                                stash_location='0', store_location='0',
                                vault_location='0', mine_location='0', sokoban_location='0', ludios_location='0',
-                               castle_location='0', quest_location='0', medusa_location='0', poison_resistance='no',
+                               castle_location='0', quest_location='0', medusa_location='0',
+                               vladTower_location='0', fakeTower_location='0',
+                               poison_resistance='no',
                                sleep_resistance='no', cold_resistance='no', fire_resistance='no',
                                shock_resistance='no', disintegration_resistance='no',
                                telepathy='no',
@@ -60,7 +68,9 @@ def create_or_update_character(user, key, character_name, donations='0', magic_r
                                seeInvisible='no',
                                stealth='no',
                                freeAction='no',
-                               levitation='no'):
+                               levitation='no',
+                               conflict='no',
+                               slowDigestion='no'):
     if user is None:
         return
 
@@ -86,6 +96,8 @@ def create_or_update_character(user, key, character_name, donations='0', magic_r
     character.castle_location = castle_location
     character.quest_location = quest_location
     character.medusa_location = medusa_location
+    character.vladTower_location = vladTower_location
+    character.fakeTower_location = fakeTower_location
     character.poison_resistance = poison_resistance
     character.sleep_resistance = sleep_resistance
     character.cold_resistance = cold_resistance
@@ -99,6 +111,8 @@ def create_or_update_character(user, key, character_name, donations='0', magic_r
     character.stealth = stealth
     character.freeAction = freeAction
     character.levitation = levitation
+    character.conflict = conflict
+    character.slowDigestion = slowDigestion
 
     # todo: check to see if the threshold for characters has been reached
 

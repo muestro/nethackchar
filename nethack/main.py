@@ -49,7 +49,8 @@ class SaveProgressHandler(webapp2.RequestHandler):
                                                 self.request.get('mineLocation'), self.request.get('sokobanLocation'),
                                                 self.request.get('fortLudiosLocation'),
                                                 self.request.get('castleLocation'), self.request.get('questLocation'),
-                                                self.request.get('medusaLocation'),
+                                                self.request.get('medusaLocation'), self.request.get('vladTowerLocation'),
+                                                self.request.get('fakeTowerLocation'),
                                                 self.request.get('poisonResistance'),
                                                 self.request.get('sleepResistance'), self.request.get('coldResistance'),
                                                 self.request.get('fireResistance'),
@@ -61,7 +62,9 @@ class SaveProgressHandler(webapp2.RequestHandler):
                                                 self.request.get('seeInvisible'),
                                                 self.request.get('stealth'),
                                                 self.request.get('freeAction'),
-                                                self.request.get('levitation'))
+                                                self.request.get('levitation'),
+                                                self.request.get('conflict'),
+                                                self.request.get('slowDigestion'))
         else:
             self.redirect(users.create_login_url(self.request.uri))
 
