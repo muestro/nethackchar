@@ -14,7 +14,6 @@ class Character(db.Model):
     alignment = db.StringProperty()
 
     # resistances/intrinsics
-    acid_resistance = db.StringProperty()
     cold_resistance = db.StringProperty()
     disintegration_resistance = db.StringProperty()
     fire_resistance = db.StringProperty()
