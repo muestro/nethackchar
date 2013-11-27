@@ -18,6 +18,13 @@ $(document).ready(function(){
     });
 
     $('#notes').autoResize();
+
+    // update the date fields values of the local time
+    $('[dateValue]').each(function(){
+        var utcTime = $(this).attr('dateValue');
+        var localDateTime = new Date(utcTime);
+        $(this).append(localDateTime.toLocaleString());
+    });
 });
 
 /* Create character */

@@ -40,7 +40,9 @@
                 <button id='newCharSaveButton' onclick="createCharacter()">Save</button><button onclick="removeCreateCharacterFields();">Cancel</button>
             </li>
         {% for character in characters %}
-			<li onclick='showCharacter("{{ character.key() }}");' class='characterListItem'>{{ character.character_name }} ({{ character.created_date }})</li>
+			<li onclick='showCharacter("{{ character.key() }}");' class='characterListItem'>
+                {{ character.character_name }} (<span dateValue="{{ character.created_date.isoformat() }}"></span>)
+            </li>
 		{% endfor %}
         </ul>
         {% if characters|length <= 0 %}
@@ -56,7 +58,7 @@
         <ul>
             <li>Name: <span id='charName' class='editableItem'>{{ character.character_name }}</span><input name='edit_charName' type='text' class='editField' value='{{ character.character_name }}' /></li>
             <li>Server: <span id="serverName" class="editableItem">{{ character.server_name }}</span><input name="edit_serverName" type="text" class="editField" value="{{ character.server_name }}"/></li>
-            <li>Created: <span id='createdDate'>{{ character.created_date }}</span></li>
+            <li>Created: <span id='createdDate' dateValue="{{ character.created_date.isoformat() }}"></span></li>
         </ul>
 
         <br />
