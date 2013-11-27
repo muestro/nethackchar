@@ -79,7 +79,7 @@ class DeleteProgressHandler(webapp2.RequestHandler):
 
         if user:
             progress.delete_character(user, self.request.get('key'))
-            time.sleep(0.5)
+            time.sleep(0.2)
             self.redirect('/nethack/progress')
         else:
             self.redirect(users.create_login_url(self.request.uri))
@@ -91,7 +91,7 @@ class CreateUserProgressHandler(webapp2.RequestHandler):
 
         if user:
             progress.create_or_update_character(user, None, self.request.get('charName'))
-            time.sleep(0.5)
+            time.sleep(0.2)
             self.redirect('/nethack/progress')
         else:
             self.redirect(users.create_login_url(self.request.uri))
