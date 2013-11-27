@@ -89,6 +89,10 @@ li.characterListItem:hover{
 .editField, .saveButton, .newCharacterFields{
 	display: none;
 }
+
+#notes.editField{
+    display: inline;
+}
 /* end character list */
 
 /* character details */
@@ -139,6 +143,12 @@ li.characterListItem:hover{
 
 .characterContainer{
     float: left;
+}
+
+#notes{
+    float: left;
+    width: 100%;
+    resize: none;
 }
 
 .clear {

@@ -1,8 +1,12 @@
 <html>
-<head><title>Nethack - Progress Tracker</title><link type="text/css" rel="stylesheet" href="/static/main.css" /></head>
+<head>
+    <title>Nethack - Progress Tracker</title>
+    <link type="text/css" rel="stylesheet" href="/static/main.css" />
+</head>
 <body>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 	<script src="/static/progress.js"></script>
+    <script src="/static/autoresize.jquery.js"></script>
 	<div class='topMenuContainer'>
 		<ul class='topMenu topMenuLeft'>
             <li id="imageNode"><a href='/nethack/progress'><img src='/static/logo.jpg'></a><span class='lineSeparator'></span></li>
@@ -58,7 +62,7 @@
                         <h3>General</h3>
                         <table>
                             <tr><td class="characterListFirstColumn">Protection</td><td><span id='donations' class='editableItem'>{{ character.donations }}</span><input name='edit_donations' type='text' class='editField' value='{{ character.donations }}' /></td></tr>
-                            <tr><td class="characterListFirstColumn">Magic Resistance</td><td><span id='magicResistance' class='editableItem'>{{ character.magic_resistance }}</span><input name='edit_magicResistance' type='checkbox' class='editField' {% if character.magic_resistance == "yes" %} checked='true' {% endif %}  /></td></tr>
+                            <tr><td class="characterListFirstColumn">Magic Resistance</td><td><span id='magicResistance' class='editableItem'>{{ character.magic_resistance }}</span><input name='edit_magicResistance' type='checkbox' class='editField' {% if character.magic_resistance == "yes" %} checked='true' {% endif %}/></td></tr>
                             <tr><td class="characterListFirstColumn">Magic Cancellation</td><td><span id='magicCancellation' class='editableItem'>{{ character.magic_cancellation }}</span><input name='edit_magicCancellation' type='checkbox' class='editField'  {% if character.magic_cancellation == "yes"  %} checked='true' {% endif %}/></td></tr>
                             <tr><td class="characterListFirstColumn">Reflection</td><td><span id='reflection' class='editableItem'>{{ character.reflection }}</span><input name='edit_reflection' type='checkbox' class='editField'  {% if character.reflection == "yes" %} checked='true' {% endif %}/></td></tr>
                             <tr><td class="characterListFirstColumn">Bag of Holding</td><td><span id='boh' class='editableItem'>{{ character.boh }}</span><input name='edit_boh' type='checkbox' class='editField'  {% if character.boh == "yes" %} checked='true' {% endif %}/></td></tr>
@@ -68,19 +72,19 @@
                     <div>
                         <h3>Locations</h3>
                         <table>
-                            <tr><td class="characterListFirstColumn">Stash location(s)</td><td><span id='stashLocations' class='editableItem'>{{ character.stash_location }}</span><input name='edit_stashLocations' type='text' class='editField' value='{{ character.stash_location }}' /></td></tr>
-                            <tr><td class="characterListFirstColumn">Store location(s)</td><td><span id='storeLocations' class='editableItem'>{{ character.store_location }}</span><input name='edit_storeLocations' type='text' class='editField' value='{{ character.store_location }}' /></td></tr>
-                            <tr><td class="characterListFirstColumn">Vault location(s)</td><td><span id='vaultLocations' class='editableItem'>{{ character.vault_location }}</span><input name='edit_vaultLocations' type='text' class='editField' value='{{ character.vault_location }}' /></td></tr>
+                            <tr><td class="characterListFirstColumn">Stash location(s)</td><td><span id='stashLocations' class='editableItem'>{{ character.stash_location }}</span><input name='edit_stashLocations' type='text' class='editField' value='{{ character.stash_location|e }}' /></td></tr>
+                            <tr><td class="characterListFirstColumn">Store location(s)</td><td><span id='storeLocations' class='editableItem'>{{ character.store_location }}</span><input name='edit_storeLocations' type='text' class='editField' value='{{ character.store_location|e }}' /></td></tr>
+                            <tr><td class="characterListFirstColumn">Vault location(s)</td><td><span id='vaultLocations' class='editableItem'>{{ character.vault_location }}</span><input name='edit_vaultLocations' type='text' class='editField' value='{{ character.vault_location|e }}' /></td></tr>
                             <tr><td colspan="2"><hr /></td></tr>
-                            <tr><td class="characterListFirstColumn">Mine location</td><td><span id='mineLocation' class='editableItem'>{{ character.mine_location }}</span><input name='edit_mineLocation' type='text' class='editField' value='{{ character.mine_location }}' /></td></tr>
-                            <tr><td class="characterListFirstColumn">Sokoban location</td><td><span id='sokobanLocation' class='editableItem'>{{ character.sokoban_location }}</span><input name='edit_sokobanLocation' type='text' class='editField' value='{{ character.sokoban_location }}' /></td></tr>
-                            <tr><td class="characterListFirstColumn">Fort Ludios location</td><td><span id='fortLudiosLocation' class='editableItem'>{{ character.ludios_location }}</span><input name='edit_fortLudiosLocation' type='text' class='editField' value='{{ character.ludios_location }}' /></td></tr>
-                            <tr><td class="characterListFirstColumn">Quest location</td><td><span id='questLocation' class='editableItem'>{{ character.quest_location }}</span><input name='edit_questLocation' type='text' class='editField' value='{{ character.quest_location }}' /></td></tr>
-                            <tr><td class="characterListFirstColumn">Medusa location</td><td><span id='medusaLocation' class='editableItem'>{{ character.medusa_location }}</span><input name='edit_medusaLocation' type='text' class='editField' value='{{ character.medusa_location }}' /></td></tr>
-                            <tr><td class="characterListFirstColumn">Castle location</td><td><span id='castleLocation' class='editableItem'>{{ character.castle_location }}</span><input name='edit_castleLocation' type='text' class='editField' value='{{ character.castle_location }}' /></td></tr>
+                            <tr><td class="characterListFirstColumn">Mine location</td><td><span id='mineLocation' class='editableItem'>{{ character.mine_location }}</span><input name='edit_mineLocation' type='text' class='editField' value='{{ character.mine_location|e }}' /></td></tr>
+                            <tr><td class="characterListFirstColumn">Sokoban location</td><td><span id='sokobanLocation' class='editableItem'>{{ character.sokoban_location }}</span><input name='edit_sokobanLocation' type='text' class='editField' value='{{ character.sokoban_location|e }}' /></td></tr>
+                            <tr><td class="characterListFirstColumn">Fort Ludios location</td><td><span id='fortLudiosLocation' class='editableItem'>{{ character.ludios_location }}</span><input name='edit_fortLudiosLocation' type='text' class='editField' value='{{ character.ludios_location|e }}' /></td></tr>
+                            <tr><td class="characterListFirstColumn">Quest location</td><td><span id='questLocation' class='editableItem'>{{ character.quest_location }}</span><input name='edit_questLocation' type='text' class='editField' value='{{ character.quest_location|e }}' /></td></tr>
+                            <tr><td class="characterListFirstColumn">Medusa location</td><td><span id='medusaLocation' class='editableItem'>{{ character.medusa_location }}</span><input name='edit_medusaLocation' type='text' class='editField' value='{{ character.medusa_location|e }}' /></td></tr>
+                            <tr><td class="characterListFirstColumn">Castle location</td><td><span id='castleLocation' class='editableItem'>{{ character.castle_location }}</span><input name='edit_castleLocation' type='text' class='editField' value='{{ character.castle_location|e }}' /></td></tr>
                             <tr><td colspan="2"><hr /></td></tr>
-                            <tr><td class="characterListFirstColumn">Vlad's Tower location</td><td><span id='vladTowerLocation' class='editableItem'>{{ character.vladTower_location }}</span><input name='edit_vladTowerLocation' type='text' class='editField' value='{{ character.vladTower_location }}' /></td></tr>
-                            <tr><td class="characterListFirstColumn">Fake Tower location</td><td><span id='fakeTowerLocation' class='editableItem'>{{ character.fakeTower_location }}</span><input name='edit_fakeTowerLocation' type='text' class='editField' value='{{ character.fakeTower_location }}' /></td></tr>
+                            <tr><td class="characterListFirstColumn">Vlad's Tower location</td><td><span id='vladTowerLocation' class='editableItem'>{{ character.vladTower_location }}</span><input name='edit_vladTowerLocation' type='text' class='editField' value='{{ character.vladTower_location|e }}' /></td></tr>
+                            <tr><td class="characterListFirstColumn">Fake Tower location</td><td><span id='fakeTowerLocation' class='editableItem'>{{ character.fakeTower_location }}</span><input name='edit_fakeTowerLocation' type='text' class='editField' value='{{ character.fakeTower_location|e }}' /></td></tr>
                         </table>
                     </div>
                 </td>
@@ -115,7 +119,8 @@
             </tr>
         </table>
 
-
+        <h3>Notes</h3>
+        <textarea id='notes' name='edit_notes' class='editField' disabled='true' placeholder='Notes go here.  Use edit character to enter notes.' rows='5'>{{ character.notes|e }}</textarea>
 	</div>
     <div id='linkList'>
         <h3>Links</h3>
@@ -127,6 +132,9 @@
             <li><a href='http://lparchive.org/Nethack-%28by-Lobster-Maneuver%29/'>Tutorial</a><br/><span>http://lparchive.org/Nethack-%28by-Lobster-Maneuver%29/</span></li>
         </ul>
     </div>
+
+    <div class="clear"></div>
+
 	{% endfor %}
     {% endif %}
 

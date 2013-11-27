@@ -64,7 +64,8 @@ class SaveProgressHandler(webapp2.RequestHandler):
                                                 self.request.get('freeAction'),
                                                 self.request.get('levitation'),
                                                 self.request.get('conflict'),
-                                                self.request.get('slowDigestion'))
+                                                self.request.get('slowDigestion'),
+                                                self.request.get('notes'))
         else:
             self.redirect(users.create_login_url(self.request.uri))
 

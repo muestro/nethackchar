@@ -16,6 +16,8 @@ $(document).ready(function(){
             $(this).addClass('charDetailsYesValue');
         }
     });
+
+    $('#notes').autoResize();
 });
 
 /* Create character */
@@ -35,11 +37,15 @@ function showEditFields(){
     $('#editButton').hide();
 	$('.editableItem').hide();
 	$('.editField').show();
+
+    $('#notes').removeAttr('disabled');
 }
 
 function hideEditFields(){
 	$('.editableItem').show();
 	$('.editField').hide();
+
+    $('#notes').attr('disabled', 'true');
 }
 
 /* Show Character */
@@ -66,7 +72,7 @@ function saveCharacter(){
         alert('save failed.');
         return;
     }
-    $('.characterContainer').find('.editField').each(function(){
+    $('.characterContainer').find('.editField[name^="edit_"]').each(function(){
 		var value = null;
 		if($(this).attr('type') == 'checkbox'){
 			if($(this).prop('checked')){
@@ -79,8 +85,6 @@ function saveCharacter(){
 		}
 		data[$(this).attr('name').split('edit_')[1]] = value;
 	});
-
-
 
 	$.post('/nethack/progress/save', data, function(data){
         window.location.href = "/nethack/progress?charKey=" + charKey;

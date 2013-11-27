@@ -52,6 +52,8 @@ class Character(db.Model):
     boh = db.StringProperty()
     luckstone = db.StringProperty()
 
+    notes = db.TextProperty()
+
 
 def create_or_update_character(user, key, character_name, donations='0', magic_resistance='no',
                                magic_cancellation='no', reflection='no', boh='no', luckstone='no',
@@ -70,7 +72,8 @@ def create_or_update_character(user, key, character_name, donations='0', magic_r
                                freeAction='no',
                                levitation='no',
                                conflict='no',
-                               slowDigestion='no'):
+                               slowDigestion='no',
+                               notes=''):
     if user is None:
         return
 
@@ -113,6 +116,7 @@ def create_or_update_character(user, key, character_name, donations='0', magic_r
     character.levitation = levitation
     character.conflict = conflict
     character.slowDigestion = slowDigestion
+    character.notes = notes[:5000]
 
     # todo: check to see if the threshold for characters has been reached
 
