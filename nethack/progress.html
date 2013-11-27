@@ -4,12 +4,15 @@
     <link type="text/css" rel="stylesheet" href="/static/main.css" />
 </head>
 <body>
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+	<!-- Scripts -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 	<script src="/static/progress.js"></script>
     <script src="/static/autoresize.jquery.js"></script>
-	<div class='topMenuContainer'>
+
+    <!-- Top Menu -->
+	<div class='topMenuContainer pointerCursor'>
 		<ul class='topMenu topMenuLeft'>
-            <li id="imageNode"><a href='/nethack/progress'><img src='/static/logo.jpg'></a><span class='lineSeparator'></span></li>
+            <li id="imageNode" class="defaultCursor"><a href='/nethack/progress'><img src='/static/logo.jpg'></a><span class='lineSeparator'></span></li>
             {% if not characterSelected %}
             <li class="createButton" id="createButton" onclick='showCreateCharacterFields();'><a>Create character</a></li>
             {% endif %}
@@ -25,15 +28,14 @@
         <span class="clear"></span>
 	</div>
 
-
-
     <br/>
 
+    <!-- Character list -->
     {% if not characterSelected %}
-    <div id="characterListDisplay" class="characterListDisplay">
+    <div id="characterListDisplay" class="characterListDisplay pointerCursor">
 		<h3>Characters</h3>
         <ul id='characterList'>
-            <li id="newCharacterItem" class="characterListItem newCharacterFields">
+            <li id="newCharacterItem" class="characterListItem newCharacterFields defaultCursor">
                 <label for="newCharInput">Character Name: </label><input type="text" id="newCharInput" class="charNameField" />
                 <button id='newCharSaveButton' onclick="createCharacter()">Save</button><button onclick="removeCreateCharacterFields();">Cancel</button>
             </li>
@@ -47,6 +49,7 @@
 	</div>
     {% endif %}
 
+    <!-- Selected character -->
     {% if characterSelected %}
 	{% for character in characters %}
 	<div class='characterContainer' id='sheet_{{character.key()}}' key='{{character.key()}}'>
@@ -130,6 +133,8 @@
         <h3>Notes</h3>
         <textarea id='notes' name='edit_notes' class='editField' disabled='true' placeholder='Notes go here.  Use edit character to enter notes.' rows='5'>{{ character.notes|e }}</textarea>
 	</div>
+
+    <!-- Right Menu -->
     <div id='linkList'>
         <h3>Links</h3>
         <ul>

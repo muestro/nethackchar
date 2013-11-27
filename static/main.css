@@ -13,6 +13,14 @@ ul{
     line-height: 142%
 }
 
+.pointerCursor li{
+    cursor: pointer;
+}
+
+li.defaultCursor {
+    cursor: auto;
+}
+
 .topMenuContainer{
     width: 100%;
     overflow: visible;
@@ -29,7 +37,6 @@ ul{
     list-style-type: none;
     padding-right: 10px;
     padding-left: 10px;
-    cursor: pointer;
     font-size: 14px;
     height: 44px;
     line-height: 44px;
@@ -79,7 +86,6 @@ ul{
 li.characterListItem{
     padding-bottom: 10px;
 	overflow: hidden;
-	cursor: pointer;	
 }
 
 li.characterListItem:hover{

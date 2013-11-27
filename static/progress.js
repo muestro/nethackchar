@@ -58,6 +58,11 @@ function createCharacter(){
     var charName = $('#newCharInput').val();
     var data = {};
     data['charName'] = charName;
+
+    // set the cursor to wait
+    $("*").css("cursor", "wait");
+
+    // post to the server which will result in a redirect
     $.post('/nethack/progress/createUser', data, function(data){
         window.location.href = "/nethack/progress";
     });
@@ -98,6 +103,10 @@ function deleteCharacter(){
     var charKey = $('.characterContainer').attr('key');
     if(charKey){
         data['key'] = charKey;
+
+        // set the cursor to wait
+        $("*").css("cursor", "wait");
+
         $.post('/nethack/progress/delete', data, function(data){
             window.location.href = "/nethack/progress";
         });
