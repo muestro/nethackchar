@@ -41,6 +41,8 @@ class SaveProgressHandler(webapp2.RequestHandler):
 
             # save to db
             progress.create_or_update_character(user, self.request.get('key'), self.request.get('charName'),
+                                                self.request.get('serverName'), self.request.get('role'),
+                                                self.request.get('alignment'),
                                                 self.request.get('donations'), self.request.get('magicResistance'),
                                                 self.request.get('magicCancellation'), self.request.get('reflection'),
                                                 self.request.get('boh'), self.request.get('luckstone'),

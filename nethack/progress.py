@@ -9,6 +9,9 @@ class Character(db.Model):
     creator = db.UserProperty()
     character_name = db.StringProperty()
     created_date = db.DateProperty()
+    server_name = db.StringProperty()
+    role = db.StringProperty()
+    alignment = db.StringProperty()
 
     # resistances/intrinsics
     acid_resistance = db.StringProperty()
@@ -55,7 +58,8 @@ class Character(db.Model):
     notes = db.TextProperty()
 
 
-def create_or_update_character(user, key, character_name, donations='0', magic_resistance='no',
+def create_or_update_character(user, key, character_name, server_name='', role='', alignment='',
+                               donations='0', magic_resistance='no',
                                magic_cancellation='no', reflection='no', boh='no', luckstone='no',
                                stash_location='0', store_location='0',
                                vault_location='0', mine_location='0', sokoban_location='0', ludios_location='0',
@@ -84,6 +88,9 @@ def create_or_update_character(user, key, character_name, donations='0', magic_r
         character = Character()
 
     character.character_name = character_name
+    character.server_name = server_name
+    character.role = role
+    character.alignment = alignment
     character.donations = donations
     character.magic_resistance = magic_resistance
     character.magic_cancellation = magic_cancellation

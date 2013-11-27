@@ -51,8 +51,16 @@
 	{% for character in characters %}
 	<div class='characterContainer' id='sheet_{{character.key()}}' key='{{character.key()}}'>
         <ul>
-            <li>Character: <span id='charName' class='editableItem'>{{ character.character_name }}</span><input name='edit_charName' type='text' class='editField' value='{{ character.character_name }}' /></li>
+            <li>Name: <span id='charName' class='editableItem'>{{ character.character_name }}</span><input name='edit_charName' type='text' class='editField' value='{{ character.character_name }}' /></li>
+            <li>Server: <span id="serverName" class="editableItem">{{ character.server_name }}</span><input name="edit_serverName" type="text" class="editField" value="{{ character.server_name }}"/></li>
             <li>Created: <span id='createdDate'>{{ character.created_date }}</span></li>
+        </ul>
+
+        <br />
+
+        <ul>
+            <li>Role: <span id='role' class='editableItem'>{{ character.role }}</span><input name='edit_role' type='text' class='editField' value='{{ character.role }}' /></li>
+            <li>Alignment: <span id='alignment' class='editableItem'>{{ character.alignment }}</span><input name='edit_alignment' type='text' class='editField' value='{{ character.alignment }}' /></li>
         </ul>
 
         <table class="charDetailsOuterTable">
