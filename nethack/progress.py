@@ -9,6 +9,7 @@ class Character(db.Model):
     creator = db.UserProperty()
     character_name = db.StringProperty()
     created_date = db.DateTimeProperty()
+    last_modified_date = db.DateTimeProperty()
     server_name = db.StringProperty()
     role = db.StringProperty()
     alignment = db.StringProperty()
@@ -91,6 +92,7 @@ def create_or_update_character(user, key, character_name, server_name='', role='
         character = db.get(db.Key(key))
     else:
         character = Character()
+        character.created_date = datetime.datetime.today()
 
     character.character_name = character_name
     character.server_name = server_name
@@ -133,7 +135,7 @@ def create_or_update_character(user, key, character_name, server_name='', role='
     # todo: check to see if the threshold for characters has been reached
 
     character.creator = user
-    character.created_date = datetime.datetime.today()
+    character.last_modified_date = datetime.datetime.today()
     character.put()
     return 1
 
