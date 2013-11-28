@@ -70,7 +70,10 @@ function createCharacter(){
     $("*").css("cursor", "wait");
 
     // post to the server which will result in a redirect
-    $.post('/nethack/progress/createUser', data, function(data){
+    $.post('/nethack/progress/createUser', data, function(){
+        window.location.href = "/nethack/progress";
+    })
+    .fail(function(){
         window.location.href = "/nethack/progress";
     });
 }
@@ -98,9 +101,12 @@ function saveCharacter(){
 		data[$(this).attr('name').split('edit_')[1]] = value;
 	});
 
-	$.post('/nethack/progress/save', data, function(data){
+	$.post('/nethack/progress/save', data, function(){
         window.location.href = "/nethack/progress?charKey=" + charKey;
-	});
+	})
+    .fail(function(){
+        window.location.href = "/nethack/progress";
+    });
 	
 	hideEditFields();
 }
@@ -116,9 +122,10 @@ function deleteCharacter(){
 
         $.post('/nethack/progress/delete', data, function(data){
             window.location.href = "/nethack/progress";
+        })
+        .fail(function(){
+            window.location.href = "/nethack/progress";
         });
-    }else{
-        alert('delete failed.');
     }
 
 }

@@ -57,6 +57,12 @@ class Character(db.Model):
     notes = db.TextProperty()
 
 
+def create_character(user, character_name):
+    if user is None:
+        return
+    return create_or_update_character(user, None, character_name)
+
+
 def create_or_update_character(user, key, character_name, server_name='', role='', alignment='',
                                donations='0', magic_resistance='no',
                                magic_cancellation='no', reflection='no', boh='no', luckstone='no',
@@ -152,3 +158,15 @@ def get_characters(user, characterKey):
         if character and character.creator == user:
             characters = [character]
             return characters
+
+
+def is_character_owner(user, characterKey):
+    if (user is None) or (characterKey is None):
+        return False
+    try:
+        character = db.get(characterKey)
+    except db.BadKeyError:
+        return False
+
+    return character.creator == user
+
