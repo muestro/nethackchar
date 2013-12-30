@@ -33,6 +33,12 @@ class Character(db.Model):
     conflict = db.StringProperty()
     slowDigestion = db.StringProperty()
 
+    # genocided
+    genoLich = db.StringProperty()
+    genoMindflayer = db.StringProperty()
+    genoRustmonster = db.StringProperty()
+    genoEel = db.StringProperty()
+
     # location(s)
     stash_location = db.StringProperty()
     store_location = db.StringProperty()
@@ -83,7 +89,8 @@ def create_or_update_character(user, key, character_name, server_name='', role='
                                levitation='no',
                                conflict='no',
                                slowDigestion='no',
-                               notes=''):
+                               notes='',
+                               genoLich='', genoMindflayer='', genoRustmonster='', genoEel=''):
     if user is None:
         return
 
@@ -131,6 +138,10 @@ def create_or_update_character(user, key, character_name, server_name='', role='
     character.conflict = conflict
     character.slowDigestion = slowDigestion
     character.notes = notes[:5000]
+    character.genoLich = genoLich
+    character.genoMindflayer = genoMindflayer
+    character.genoRustmonster = genoRustmonster
+    character.genoEel = genoEel
 
     # todo: check to see if the threshold for characters has been reached
 

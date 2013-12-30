@@ -122,6 +122,13 @@
                         <tr><td class="characterListFirstColumn">Conflict</td><td><span class="editableItem" id='conflict'>{{ character.conflict }}</span><input name='edit_conflict' type='checkbox' class='editField' {% if character.conflict == "yes" %} checked='true' {% endif %}/></td></tr>
                         <tr><td class="characterListFirstColumn">Slow Digestion</td><td><span class="editableItem" id='slowDigestion'>{{ character.slowDigestion }}</span><input name='edit_slowDigestion' type='checkbox' class='editField' {% if character.slowDigestion == "yes" %} checked='true' {% endif %}/></td></tr>
                     </table>
+                    <h3>Genocided</h3>
+                    <table>
+                        <tr><td class="characterListFirstColumn">Lich</td><td><span class="editableItem" id="genoLich">{{ character.genoLich }}</span><input name="edit_genoLich" type="checkbox" class="editField" {% if character.genoLich == "yes" %} checked='true' {% endif %}/></td></tr>
+                        <tr><td class="characterListFirstColumn">Mindflayer</td><td><span class="editableItem" id="genoMindflayer">{{ character.genoMindflayer }}</span><input name="edit_genoMindflayer" type="checkbox" class="editField" {% if character.genoMindflayer == "yes" %} checked='true' {% endif %}/></td></tr>
+                        <tr><td class="characterListFirstColumn">Rustmonster</td><td><span class="editableItem" id="genoRustmonster">{{ character.genoRustmonster }}</span><input name="edit_genoRustmonster" type="checkbox" class="editField" {% if character.genoRustmonster == "yes" %} checked='true' {% endif %}/></td></tr>
+                        <tr><td class="characterListFirstColumn">Eel</td><td><span class="editableItem" id="genoEel">{{ character.genoEel }}</span><input name="edit_genoEel" type="checkbox" class="editField" {% if character.genoEel == "yes" %} checked='true' {% endif %}/></td></tr>
+                    </table>
                 </td>
             </tr>
             <tr>

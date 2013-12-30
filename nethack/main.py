@@ -75,7 +75,11 @@ class SaveProgressHandler(webapp2.RequestHandler):
                                             self.request.get('levitation'),
                                             self.request.get('conflict'),
                                             self.request.get('slowDigestion'),
-                                            self.request.get('notes'))
+                                            self.request.get('notes'),
+                                            self.request.get('genoLich'),
+                                            self.request.get('genoMindflayer'),
+                                            self.request.get('genoRustmonster'),
+                                            self.request.get('genoEel'))
 
 
 class DeleteProgressHandler(webapp2.RequestHandler):
