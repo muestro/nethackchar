@@ -17,7 +17,7 @@ $(document).ready(function(){
         }
     });
 
-    $('#notes').autoResize();
+    $('#notes').autosize();
 
     // update the date fields values of the local time
     $('[dateValue]').each(function(){
