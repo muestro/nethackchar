@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Nethack - Progress Tracker</title>
+    <link type="text/css" rel="stylesheet" href="/static/main.css" />
+    <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+</head>
+<body>
+	<!-- Scripts -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+    <!-- Top Menu -->
+	<div class='topMenuContainer pointerCursor'>
+        <ul class='topMenu topMenuLeft'>
+            <li id='logo' onclick="location.href='/nethack/progress'">@ NethackChar</li>
+        </ul>
+        <ul class="topMenu topMenuRight">
+            <li class='userAccountButton'>{% if user %} {{ user.email() }} {% else %} Not logged in {% endif %}</li>
+            <li>About</li>
+        </ul>
+        <span class="clear"></span>
+    </div>
+
+    <!-- Main Content -->
+    <div class="aboutContainer">
+        <h1>About</h1>
+        <para><a href="http://en.wikipedia.org/wiki/NetHack">Nethack</a>.  The goal is to ascend.  Hopefully this site helps that.</para>
+        <h1>Acknowledgements</h1>
+        <para>Listed below are the various people/servies that have helped make this site possible.</para>
+        <ul class="aboutContainer">
+            <li><h2>Hosting</h2><para>Hosting provided by <a href="https://cloud.google.com/products/app-engine/">Google App Engine</a>.</para></li>
+            <li><h2>Fonts</h2><para>At least one font provided by <a href="http://www.fontfabric.com">Fontfabric</a>.</h2></para></li>
+        </ul>
+    </div>
+</body>
+</html>

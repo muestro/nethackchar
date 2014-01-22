@@ -116,6 +116,12 @@ class CreateUserProgressHandler(webapp2.RequestHandler):
         return self.redirect('/nethack/progress')
 
 
+class AboutHandler(webapp2.RedirectHandler):
+    def get(self):
+        template = jinja_environment.get_template('about.html')
+        self.response.out.write(template.render())
+
+
 class NotFoundHandler(webapp2.RequestHandler):
     def get(self):
         return self.redirect('../notfound')
@@ -127,6 +133,7 @@ app = webapp2.WSGIApplication([('/', ProgressHandler),
                                ('/nethack/progress/save', SaveProgressHandler),
                                ('/nethack/progress/delete', DeleteProgressHandler),
                                ('/nethack/progress/createUser', CreateUserProgressHandler),
+                               ('/nethack/about', AboutHandler),
                                ('/nethack.*', NotFoundHandler), ],
                               debug=True)
 

@@ -1,7 +1,9 @@
+<!DOCTYPE html>
 <html>
 <head>
     <title>Nethack - Progress Tracker</title>
     <link type="text/css" rel="stylesheet" href="/static/main.css" />
+    <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 </head>
 <body>
 	<!-- Scripts -->
@@ -12,7 +14,7 @@
     <!-- Top Menu -->
 	<div class='topMenuContainer pointerCursor'>
 		<ul class='topMenu topMenuLeft'>
-            <li id="imageNode" class="defaultCursor"><a href='/nethack/progress'><img src='/static/logo.jpg'></a><span class='lineSeparator'></span></li>
+            <li id='logo' onclick="location.href='/nethack/progress'">@ NethackChar<span class='lineSeparator'></span></li>
             {% if not characterSelected %}
             <li class="createButton" id="createButton" onclick='showCreateCharacterFields();'><a>Create character</a></li>
             {% endif %}
@@ -24,6 +26,7 @@
 		</ul>
         <ul class="topMenu topMenuRight">
             <li class='userAccountButton'>{{ user.email() }}</li>
+            <li onclick="location.href='/nethack/about'">About</li>
         </ul>
         <span class="clear"></span>
 	</div>
