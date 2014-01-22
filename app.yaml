@@ -11,9 +11,14 @@ handlers:
 - url: /
   script: nethack.main.app
 
+- url: /static/(.*\.otf)
+  static_files: static/\1
+  upload: static/(.*\.otf)
+  mime_type: application/x-font-otf
+
 - url: /static
   static_dir: static
-  
+
 - url: /nethack.*
   script: nethack.main.app
   
